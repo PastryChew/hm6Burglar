@@ -31,6 +31,7 @@ public class Game : MonoBehaviour
     {
         countPin1 += 1;
         countPin2 -= 1;
+        CheckValue();
     }
 
     public void ButtonTool2()
@@ -38,21 +39,30 @@ public class Game : MonoBehaviour
         countPin1 -= 1;
         countPin2 += 2;
         countPin3 -= 1;
-
+        CheckValue();
     }
     public void ButtonTool3()
     {
         countPin1 -= 1;
         countPin2 += 1;
         countPin3 += 1;
+        CheckValue();
     }
-    
+    public void CheckValue()
+    {
+        countPin1 = Mathf.Clamp(countPin1, -10, 10);
+        countPin2 = Mathf.Clamp(countPin2, -10, 10);
+        countPin3 = Mathf.Clamp(countPin3, -10, 10);
+    }    
+
     // Update is called once per frame
     void Update()
     {
         pin1.text = countPin1.ToString();
         pin2.text = countPin2.ToString();
         pin3.text = countPin3.ToString();
+
+        
 
         if (IsTimerStart)
         {
@@ -78,9 +88,7 @@ public class Game : MonoBehaviour
             buttonTool1.SetActive(false);
             buttonTool2.SetActive(false);
             buttonTool3.SetActive(false);
-
         }
-
     }
     public void Timer()
     {
